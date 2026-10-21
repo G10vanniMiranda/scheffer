@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Scheffer Store: landing do iPhone 18 Pro / Pro Max
 
-## Getting Started
+Landing de conversão para WhatsApp da Scheffer Store (Porto Velho, RO), baseada no perfil público [@scheffer.store](https://www.instagram.com/scheffer.store/).
 
-First, run the development server:
+## Rodar
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # desenvolvimento
+npm run build && npm run start   # produção local
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Variável opcional: `NEXT_PUBLIC_SITE_URL` (URL pública, usada em canonical e Open Graph).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Onde editar
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| O quê | Arquivo |
+|---|---|
+| WhatsApp, cidade, Instagram | `src/config/site.ts` |
+| Textos, cores, FAQ, mensagens pré-preenchidas | `src/content/landing.ts` |
+| Imagens | `src/assets/ig/` e `src/app/opengraph-image.jpg` |
 
-## Learn More
+Todos os CTAs têm `data-cta` e enviam `{ event: "whatsapp_click", cta }` para `window.dataLayer` se ele existir. Nenhum tracker vem instalado.
 
-To learn more about Next.js, take a look at the following resources:
+## Origem do conteúdo
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Cada condição comercial vem de publicação da loja:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Lacrado e 1 ano de garantia Apple: post de 29/09/2026.
+- Até 18x no cartão: posts de 03/09/2026 e 02/07/2026.
+- Usado como parte do pagamento: post de 02/07/2026, de uma campanha. **Confirmar se continua valendo.**
+- Cores da linha 18 Pro (Bordô, Glacial, Prateado, Preto) e câmera de 48 MP com abertura variável: post de 09/09/2026.
 
-## Deploy on Vercel
+## Pendências com a loja
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Uso das fotos do Instagram autorizado pela loja (out/2026). As imagens da seção de cores são renders de pré-lançamento e aparecem marcadas como ilustrativas.
+2. Logo oficial em vetor. Hoje o wordmark é recriado em texto (`src/components/wordmark.tsx`).
+3. Confirmar se aceita usado na troca, se faz entrega fora de Porto Velho e o endereço ou ponto de retirada.
+4. Domínio final e `NEXT_PUBLIC_SITE_URL`.
+5. Fotos reais das outras cores quando chegarem ao estoque.
